@@ -24,6 +24,7 @@ urlpatterns = [
     # Add new add for test
     path('CBV/', include('CBV.urls', namespace = 'CBV')),
     path('book/', include('book.urls', namespace = 'book')),
+    path('pics/', include('pics.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
