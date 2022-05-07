@@ -1,0 +1,7 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h2>{{posts}}</h2>
+<h2>{{data}}</h2>
+<a href="{% url 'CBV:redirect-task' pk=posts.id %}" target="_blank">{{posts.title}}</a>
+{% endblock %}

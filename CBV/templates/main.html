@@ -1,0 +1,10 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<ul>
+    <li><a href="{% url 'CBV:postlist' %}" target="_blank">postlist</a> - postlist</li>
+    <li><a href="{% url 'CBV:extwo' %}" target="_blank">extwo</a> - Enter Here!</li> 
+    <li><a href="{% url 'CBV:go-to-very' %}" target="_blank">Very</a> - Very</li>
+</ul>
+{% endblock %}

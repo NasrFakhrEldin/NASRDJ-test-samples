@@ -1,0 +1,9 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h1>{{title}}</h1>
+<ul>
+    <li><a href="{% url 'book:index' %}" target="_blank">Home</a> - Home Index</li>
+    <li><a href="{% url 'book:add' %}" target="_blank">Add</a> - Add Books</li>
+</ul>
+{% endblock %}

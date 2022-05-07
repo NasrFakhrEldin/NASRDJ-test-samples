@@ -1,0 +1,17 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+
+    {% block title %} {{ settings.APP_NAME }} {% endblock %}
+    <!-- edit samples/settings.py and add APP_NAME='DJ4E Samples' or similar
+        Also make sure that home/context_processors.py exists and is included
+        settings.py context processors as 'home.context_processors.settings' -->
+    <h1> Welcome to the NASRDJ Samples </h1>
+    <p>
+    Here are some samples (Each will open in a new tab):
+    </p>
+    <ul>
+        <li><a href="CBV" >CBV</a> - CBV</li>
+        <li><a href="book" >Book</a> - Cbv Book App</li>
+    </ul>
+
+{% endblock %}

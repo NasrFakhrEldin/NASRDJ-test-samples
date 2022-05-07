@@ -1,0 +1,14 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h1>Posts List:</h1>
+{% for post in  post_list %}
+
+    <ul>
+        <li><a href="">{{post.title}}</a></li>
+        <li><a href="">{{post.content}}</a></li>
+        <li><a href="{{ post.image.url }}">{{post.image}}</a></li>
+    <ul>
+
+{% endfor %}
+{% endblock %}
