@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Pics</h1>
+<p>
+    {% if object_list %}
+    <ul>
+        {% for pic in object_list %}
+        <li>
+            <a href="{% url 'pics:pic_detail' pic.id %}">{{pic.title}}</a>
+            {% if pic.owner == user %}
+            <a href="{% url 'pics:pic_update' %}">Edit</a>
+            <a href="{% url 'pics:pic_delete'  %}">Delete</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+    {% else%}
+        <p>There are no pics in the database.</p>
+    {% endif %}
+</p>
+<p>
+    <a href="{% url 'pics:pic_create' %}">Add an Pic</a>
+</p>
+{% endblock %}

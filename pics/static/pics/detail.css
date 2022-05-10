@@ -1,0 +1,20 @@
+.overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: none;
+    background-color: rgba(0,0,0,0.5); /*dim the background*/
+  }
+
+img {
+    width:90%;
+    margin-top: 50px;
+    border:3px solid black;
+}
+
+span {
+    float: right;
+}
