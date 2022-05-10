@@ -5,6 +5,7 @@ from pics.models import Pic
 from pics.owner import  OwnerListView, OwnerDetailView, OwnerDeleteView
 from django.views.generic import ListView
 from .forms import CreateForm
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -81,3 +82,12 @@ class PicDeleteView(OwnerDeleteView):
     model = Pic
     template_name = "pics/delete.html"
     success_url = reverse_lazy('pics:all')
+
+
+def stream_file(request, pk):
+    pic = get_object_or_404(Pic, id=pk)
+    response = HttpResponse()
+    response['Content-Type'] = pic.content_type
+    response['Content-Length'] = len(pic.picture)
+    response.write(pic.picture)
+    return response
