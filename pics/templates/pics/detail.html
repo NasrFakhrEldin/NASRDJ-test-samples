@@ -1,19 +1,18 @@
-{% extends "base.html" %}
+{% extends "base_bootstrap.html" %}
 {% load static %}
 {% load humanize %} <!-- https://docs.djangoproject.com/en/3.0/ref/contrib/humanize -->
 {% block head %}
     <link rel="stylesheet" href="{% static 'pics/detail.css' %}">
-    <script src="{% static 'pics/detail.js' %}"></script>
 {% endblock %}
 {% block content %}
 {% if pic.content_type %}
     <div id="overlay" class="overlay" style="text-align: center;">
-        <img src="{% url 'pics:pic_picture' pic.id %}" alt="">
+        <img src="{% url 'pics:pic_picture' pic.id %}">
     </div>
 {% endif %}
     <span>
         ({{ pic.updated_at|naturaltime }})
-        {% if pic.owner == user] %}
+        {% if pic.owner == user %}
             <a href="{% url 'pics:pic_update' pic.id %}"><i class="fa fa-pencil"></i></a>
             <a href="{% url 'pics:pic_delete' pic.id %}"><i class="fa fa-trash"></i></a>
         {% endif %}
@@ -21,7 +20,7 @@
     <h1>{{ pic.title }}</h1>
     {% if pic.content_type %}
         <div id="overlay" class="overlay" style="text-align: center;">
-            <img src="{% url 'pics:pic_picture' pic.id %}" alt="">
+            <img src="{% url 'pics:pic_picture' pic.id %}">
         </div>
     {% endif %}
     <p>

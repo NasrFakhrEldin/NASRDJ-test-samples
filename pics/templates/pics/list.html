@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_bootstrap.html" %}
 {% block content %}
 <h1>Pics</h1>
 <p>
@@ -8,8 +8,8 @@
         <li>
             <a href="{% url 'pics:pic_detail' pic.id %}">{{pic.title}}</a>
             {% if pic.owner == user %}
-            <a href="{% url 'pics:pic_update' %}">Edit</a>
-            <a href="{% url 'pics:pic_delete'  %}">Delete</a>
+                (<a href="{% url 'pics:pic_update' pic.id %}">Edit</a> |
+                <a href="{% url 'pics:pic_delete' pic.id %}">Delete</a>)
             {% endif %}
         </li>
         {% endfor %}
