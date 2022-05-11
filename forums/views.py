@@ -1,8 +1,11 @@
-from .owners import *
+from .owners import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
 from .models import Forum, Comment
 from django.urls import reverse, reverse_lazy
 from .forms import CommentForm
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views import View
+from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -23,7 +26,7 @@ class ForumDetailView(OwnerDetailView):
 
     def get(self, request, pk):
         forum = Forum.objects.get(id=pk)
-        comments = Comment.objects.filter(forum=forum).order_by('-updated_at')
+        comments = Comment.objects.filter(forum = forum).order_by('-updated_at')
         comment_form = CommentForm()
         return render(request, self.template_name, {
             "forum" : forum,
@@ -42,3 +45,11 @@ class ForumDeleteView(OwnerDeleteView):
     model = Forum
     template_name = 'forums/delete.html'
     success_url = reverse_lazy('forums:all')
+
+
+class CommentCreateView(LoginRequiredMixin, View):
+    def post(self, request, pk):
+        forum = get_object_or_404(Forum, id=pk)
+        comment = Comment(forum = forum, owner = self.request.user, text = request.POST['comment']) # text from form
+        comment.save()
+        return redirect(reverse('forums:forum_detail', args=(pk,)))
