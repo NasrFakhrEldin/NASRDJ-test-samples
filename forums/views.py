@@ -3,8 +3,7 @@ from .models import Forum, Comment
 from django.urls import reverse, reverse_lazy
 from .forms import CommentForm
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views import View
-from django.views import generic
+from django.views.generic import CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
@@ -47,9 +46,20 @@ class ForumDeleteView(OwnerDeleteView):
     success_url = reverse_lazy('forums:all')
 
 
-class CommentCreateView(LoginRequiredMixin, View):
+class CommentCreateView(OwnerCreateView):
     def post(self, request, pk):
         forum = get_object_or_404(Forum, id=pk)
         comment = Comment(forum = forum, owner = self.request.user, text = request.POST['comment']) # text from form
         comment.save()
         return redirect(reverse('forums:forum_detail', args=(pk,)))
+
+
+class CommentDeleteView(OwnerDeleteView):
+    model = Comment
+    template_name = 'forums/comment_delete.html'
+    # success_url = reverse_lazy('forums:all')
+
+    # this is the power of OOP
+    def get_success_url(self):
+        forum = self.object.forum # object.forum => model => class Comment => forum ^_^
+        return reverse('forums:forum_detail', args=(forum.id,))
