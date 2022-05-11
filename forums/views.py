@@ -3,7 +3,6 @@ from .models import Forum, Comment
 from django.urls import reverse, reverse_lazy
 from .forms import CommentForm
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
