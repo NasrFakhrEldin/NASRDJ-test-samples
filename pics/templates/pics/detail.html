@@ -5,32 +5,30 @@
     <link rel="stylesheet" href="{% static 'pics/detail.css' %}">
 {% endblock %}
 {% block content %}
-{% if pic.content_type %}
-    <div id="overlay" class="overlay" style="text-align: center;">
-        <img src="{% url 'pics:pic_picture' pic.id %}">
-    </div>
+<!--  if pic.content_type -->
+<div id="overlay" class="overlay" style="text-align: center;"
+   onclick="document.getElementById('overlay').style.display = 'none';" >
+<img src="{% url 'pics:pic_picture' pic.id %}">
+</div>
+<!--  endif -->
+<span style="float: right;">
+({{ pic.updated_at|naturaltime }})
+{% if pic.owner == user %}
+<a href="{% url 'pics:pic_update' pic.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'pics:pic_delete' pic.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
-    <span>
-        ({{ pic.updated_at|naturaltime }})
-        {% if pic.owner == user %}
-            <a href="{% url 'pics:pic_update' pic.id %}"><i class="fa fa-pencil"></i></a>
-            <a href="{% url 'pics:pic_delete' pic.id %}"><i class="fa fa-trash"></i></a>
-        {% endif %}
-    </span>
-    <h1>{{ pic.title }}</h1>
-    {% if pic.content_type %}
-        <div id="overlay" class="overlay" style="text-align: center;">
-            <img src="{% url 'pics:pic_picture' pic.id %}">
-        </div>
-    {% endif %}
-    <p>
-        {{ pic.text }}
-    </p>
-    <br>
-    <p>
-        <a href="{% url 'pics:all' %}">All Pics</a>
-    </p>
-    <p>
-        {{ pic.content_type  }}
-    </p>
+</span>
+
+<h1>{{ pic.title }}</h1>
+<!--  if pic.content_type -->
+<img src="{% url 'pics:pic_picture' pic.id %}"
+    onclick="document.getElementById('overlay').style.display = 'block';">
+<!-- endif -->
+<p>
+<br>
+    {{ pic.text }}
+</p>
+<p>
+<a href="{% url 'pics:all' %}">All pics</a>
+</p>
 {% endblock %}

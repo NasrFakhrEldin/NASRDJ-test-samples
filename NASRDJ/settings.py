@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'CBV',
     'book',
     'pics',
+    'forums',
 ]
 
 MIDDLEWARE = [

@@ -2,9 +2,9 @@
 {% block content %}
 <h1>Pics</h1>
 <p>
-    {% if object_list %}
+    {% if pic_list %}
     <ul>
-        {% for pic in object_list %}
+        {% for pic in pic_list %}
         <li>
             <a href="{% url 'pics:pic_detail' pic.id %}">{{pic.title}}</a>
             {% if pic.owner == user %}

@@ -6,6 +6,7 @@ from pics.owner import  OwnerListView, OwnerDetailView, OwnerDeleteView
 from django.views.generic import ListView
 from .forms import CreateForm
 from django.http import HttpResponse
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 # Create your views here.
 
@@ -53,7 +54,7 @@ class PicUpdateView(LoginRequiredMixin, ListView):
     success_url = reverse_lazy('pics:all')
     template_name = "pics/form.html"
 
-    def get(self, request, pk=None):
+    def get(self, request, pk):
         pic = get_object_or_404(Pic, id=pk, owner = self.request.user)
         form = CreateForm(instance=pic)
 

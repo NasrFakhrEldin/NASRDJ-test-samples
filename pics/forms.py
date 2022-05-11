@@ -23,7 +23,7 @@ class CreateForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         pic = cleaned_data.get('picture')
-        if pic is None: return
+        if pic is None: return 
         if len(pic) > self.max_upload_limit:
             self.add_error('picture', "File must be < "+self.max_upload_limit_text+" bytes")
 
@@ -36,7 +36,7 @@ class CreateForm(forms.ModelForm):
 
         if isinstance(f, InMemoryUploadedFile): # Extract data from the form to the model
             bytearr = f.read()
-            instance.picture = f.content_type
+            instance.content_type = f.content_type
             instance.picture = bytearr # Overwrite with the actual image data
 
         if commit:
