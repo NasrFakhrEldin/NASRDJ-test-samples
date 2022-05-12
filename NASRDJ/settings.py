@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'book',
     'pics',
     'forums',
+    'chat',
 ]
 
 MIDDLEWARE = [

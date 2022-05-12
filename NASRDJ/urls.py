@@ -26,6 +26,7 @@ urlpatterns = [
     path('book/', include('book.urls', namespace = 'book')),
     path('pics/', include('pics.urls')),
     path('forums/', include('forums.urls')),
+    path('chat/', include('chat.urls')),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
