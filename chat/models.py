@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from django.contrib.humanize.templatetags.humanize import naturaltime
 # Create your models here.
 class Message(models.Model):
     text = models.TextField()
