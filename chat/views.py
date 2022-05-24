@@ -7,7 +7,7 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 # Create your views here.
 
 
-class SendMessage(LoginRequiredMixin, View):
+class ListSendMessage(LoginRequiredMixin, View):
     
     def get(self, request):
         return render(request, "chat/chat.html")

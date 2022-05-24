@@ -1,0 +1,38 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+
+<h1>Chat</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>
+        <input type="text" name="message" size="60" autofocus="true">
+        <input type="submit" value="Sent">
+    </p>
+</form>
+<div id="chatcontent">
+</div>
+
+<script type="text/javascript">
+
+    function UpdateMessages(){
+        $.getJSON('{% url 'chat:receive' %}', function(alldata){
+            console.log('JSON', alldata);
+            $('#chatcontent').empty();
+
+            for(var i = 0; i < alldata.length; i++){
+                data = alldata[i]
+                $('#chatcontent').append(
+                    '<p>'+data[0]+'<br>&nbsp;&nbsp;'+data[1]+'</p>\n');
+            }
+            setTimeout('UpdateMessages()', 4000);
+    });
+    }
+
+
+    // To Protect JSON requests from chaching
+    $(document).ready(function() {
+    $.ajaxSetup({ cache: false });
+    setTimeout('UpdateMessages()', 2000);
+});
+</script>
+{% endblock %}
