@@ -4,6 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .models import Message
 from django.contrib.humanize.templatetags.humanize import naturaltime
+import bleach
+
 # Create your views here.
 
 
@@ -13,7 +15,13 @@ class ListSendMessage(LoginRequiredMixin, View):
         return render(request, "chat/chat.html")
     
     def post(self, request):
-        message = Message(text = request.POST['message'], owner=request.user)
+        attrs = {
+            
+        }
+        ms = request.POST['message']
+        ms = bleach.clean(ms, tags=[], attributes=attrs)
+        ms = bleach.linkify(ms)
+        message = Message(text = ms, owner=request.user)
         message.save()
         return redirect(reverse('chat:send'))
 

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 
     # Extensions
     'django_extensions', 
-    'crispy_forms', 
+    'crispy_forms',
+    'django_bleach',
     # 'rest_framework', 
     # 'social_django',  
     # 'taggit',
@@ -53,6 +54,9 @@ INSTALLED_APPS = [
     'forums',
     'chat',
 ]
+
+# When we get to crispy forms :)
+CRISPY_TEMPLATE_PACK = 'bootstrap3'  # Add
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

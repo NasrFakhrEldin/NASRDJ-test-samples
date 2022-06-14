@@ -10,15 +10,14 @@ class Forum(models.Model):
         )
 
     text = models.TextField()
-
     owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE,         # هاتلى فورمات الاونر ده
         related_name = 'user_forums'
         )
     
     comments = models.ManyToManyField(
         settings.AUTH_USER_MODEL,
-        through= 'Comment', related_name = 'user_comments'
+        through= 'Comment', related_name = 'user_comments'              # هاتلى كومنتات الاونر ده
         )
 
     created_at = models.DateTimeField(auto_now_add=True)
